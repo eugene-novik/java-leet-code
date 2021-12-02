@@ -131,4 +131,32 @@ public class ArrayAlgorithms {
     return null;
   }
 
+  /**
+   * AGiven an array of integers nums and an integer target, return indices of the two numbers such
+   * that they add up to target. You may assume that each input would have exactly one solution, and
+   * you may not use the same element twice. You can return the answer in any order. Time
+   * Complexity: O(n)
+   *
+   * @param array numbers
+   * @param target number to compare sum of two elements
+   * @return array with indexes
+   * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
+   */
+  public int[] findTwoElementsWhereSumEqualsTargetByAnotherMap(int[] array, int target) {
+    if (array == null || array.length < 1) {
+      return null;
+    }
+
+    Map<Integer, Integer> valueMap = new HashMap<>();
+
+    for (int i = 0; i < array.length; i++) {
+      int x = target - array[i];
+      if (valueMap.containsKey(x)) {
+        return new int[]{valueMap.get(target - array[i]), i};
+      }
+      valueMap.put(array[i], i);
+    }
+    return null;
+  }
+
 }
