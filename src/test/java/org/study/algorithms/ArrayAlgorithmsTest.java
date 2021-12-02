@@ -1,5 +1,6 @@
 package org.study.algorithms;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -33,4 +34,32 @@ class ArrayAlgorithmsTest {
     assertEquals(-3, arrayAlgorithms.maxSubArraySum2(new int[]{-1, -2}, 2));
     assertEquals(400, arrayAlgorithms.maxSubArraySum2(new int[]{100, 200, 0, 400}, 2));
   }
+
+  @Test
+  public void testFindTwoElementsWhereSumEqualsTargetBrutForce() {
+    // Because nums[0] + nums[1] == 9, return [0, 1].
+    assertArrayEquals(new int[]{0, 1},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetBrutForce(new int[]{2, 7, 11, 15}, 9));
+    // Because nums[1] + nums[2] == 6 return [1,2]
+    assertArrayEquals(new int[]{1, 2},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetBrutForce(new int[]{3, 2, 4}, 6));
+    // Because nums[0] + nums[1] == 6 return [0,1]
+    assertArrayEquals(new int[]{0, 1},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetBrutForce(new int[]{3, 3}, 6));
+  }
+
+  @Test
+  public void testFindTwoElementsWhereSumEqualsTargetByMap() {
+    // Because nums[0] + nums[1] == 9, return [0, 1].
+    assertArrayEquals(new int[]{0, 1},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByMap(new int[]{2, 7, 11, 15}, 9));
+    // Because nums[1] + nums[2] == 6 return [1,2]
+    assertArrayEquals(new int[]{1, 2},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByMap(new int[]{3, 2, 4}, 6));
+    // Because nums[0] + nums[1] == 6 return [0,1]
+    assertArrayEquals(new int[]{0, 1},
+        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByMap(new int[]{3, 3}, 6));
+  }
+  
+  
 }

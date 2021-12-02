@@ -1,5 +1,8 @@
 package org.study.algorithms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ArrayAlgorithms {
 
   /**
@@ -69,6 +72,63 @@ public class ArrayAlgorithms {
     }
 
     return maxSum;
+  }
+
+  /**
+   * AGiven an array of integers nums and an integer target, return indices of the two numbers such
+   * that they add up to target. You may assume that each input would have exactly one solution, and
+   * you may not use the same element twice. You can return the answer in any order. Time
+   * Complexity: O(n^n)
+   *
+   * @param array numbers
+   * @param target number to compare sum of two elements
+   * @return array with indexes
+   * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
+   */
+  public int[] findTwoElementsWhereSumEqualsTargetBrutForce(int[] array, int target) {
+    if (array == null || array.length < 1) {
+      return null;
+    }
+
+    for (int i = 0; i < array.length; i++) {
+      for (int j = 0; j < array.length; j++) {
+        if (i != j && array[i] + array[j] == target) {
+          return new int[]{i, j};
+        }
+      }
+    }
+    return null;
+  }
+
+  /**
+   * AGiven an array of integers nums and an integer target, return indices of the two numbers such
+   * that they add up to target. You may assume that each input would have exactly one solution, and
+   * you may not use the same element twice. You can return the answer in any order. Time
+   * Complexity: O(n)
+   *
+   * @param array numbers
+   * @param target number to compare sum of two elements
+   * @return array with indexes
+   * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
+   */
+  public int[] findTwoElementsWhereSumEqualsTargetByMap(int[] array, int target) {
+    if (array == null || array.length < 1) {
+      return null;
+    }
+
+    Map<Integer, Integer> valueMap = new HashMap<>();
+
+    for (int i = 0; i < array.length; i++) {
+      valueMap.put(array[i], i);
+    }
+
+    for (int i = 0; i < array.length; i++) {
+      Integer secondIndex = valueMap.get(target - array[i]);
+      if (secondIndex != null && secondIndex != i) {
+        return new int[]{i, valueMap.get(target - array[i])};
+      }
+    }
+    return null;
   }
 
 }
