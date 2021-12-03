@@ -56,13 +56,12 @@ public class ArrayAlgorithms {
     }
 
     int maxSum = 0;
-    int tempSum = 0;
 
     for (int i = 0; i < sizeForSubArray; i++) {
       maxSum += array[i];
     }
 
-    tempSum = maxSum;
+    int tempSum = maxSum;
 
     for (int i = sizeForSubArray; i < array.length; i++) {
       tempSum = tempSum - array[i - sizeForSubArray] + array[i];
@@ -167,7 +166,7 @@ public class ArrayAlgorithms {
    * @see <a href="https://leetcode.com/problems/longest-common-prefix/">LeetCode</a>
    */
   public String findLongestCommonPrefix(String[] array) {
-    if (array == null || array.length < 1 || array[0].toCharArray().length < 1) {
+    if (array == null || array.length == 0 || array[0].toCharArray().length == 0) {
       return "";
     }
 
