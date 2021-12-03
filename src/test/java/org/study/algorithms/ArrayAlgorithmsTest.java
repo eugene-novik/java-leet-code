@@ -62,15 +62,24 @@ class ArrayAlgorithmsTest {
 
     // Because nums[0] + nums[1] == 9, return [0, 1].
     assertArrayEquals(new int[]{0, 1},
-        arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByAnotherMap(new int[]{2, 7, 11, 15}, 9));
+        arrayAlgorithms
+            .findTwoElementsWhereSumEqualsTargetByAnotherMap(new int[]{2, 7, 11, 15}, 9));
     // Because nums[1] + nums[2] == 6 return [1,2]
     assertArrayEquals(new int[]{1, 2},
         arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByAnotherMap(new int[]{3, 2, 4}, 6));
     // Because nums[0] + nums[1] == 6 return [0,1]
     assertArrayEquals(new int[]{0, 1},
         arrayAlgorithms.findTwoElementsWhereSumEqualsTargetByAnotherMap(new int[]{3, 3}, 6));
-    
+
   }
-  
-  
+
+  @Test
+  public void testFindLongestCommonPrefix() {
+    assertEquals("",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"dog", "racecar", "car"}));
+    assertEquals("fl",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"flower", "flow", "flight"}));
+  }
+
+
 }

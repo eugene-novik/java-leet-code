@@ -159,4 +159,15 @@ public class ArrayAlgorithms {
     return null;
   }
 
+  /**
+   * Algorithm to find the longest common prefix string amongst an array of strings
+   * 
+   * @param array input values
+   * @return the long prefix for whole words
+   * @see <a href="https://leetcode.com/problems/longest-common-prefix/">LeetCode</a>
+   */
+  public String findLongestCommonPrefix(String[] array) {
+    return "";
+  }
+
 }
