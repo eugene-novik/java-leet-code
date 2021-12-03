@@ -1,6 +1,7 @@
 package org.study.algorithms;
 
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -34,6 +35,43 @@ public class StringAlgorithms {
         .findFirst();
 
     return first.orElse(null);
+  }
+
+  /**
+   * Algorithm to convert roman format to integer
+   *
+   * @param input roman format
+   * @return int number
+   * @see <a href="https://leetcode.com/problems/roman-to-integer/">LeetCode</a>
+   */
+  public int romanToInt(String input) {
+    Map<Character, Integer> characterToIntMap = new HashMap<>();
+    characterToIntMap.put('I', 1);
+    characterToIntMap.put('V', 5);
+    characterToIntMap.put('X', 10);
+    characterToIntMap.put('L', 50);
+    characterToIntMap.put('C', 100);
+    characterToIntMap.put('D', 500);
+    characterToIntMap.put('M', 1000);
+
+    char[] chars = input.toCharArray();
+    int i = 0;
+    int result = 0;
+    while (i < chars.length) {
+      if (i + 1 < chars.length) {
+        Integer current = characterToIntMap.get(chars[i]);
+        Integer next = characterToIntMap.get(chars[i + 1]);
+        if (current < next) {
+          result = result + next - current;
+          i += 2;
+          continue;
+        }
+      }
+      result += characterToIntMap.get(chars[i]);
+      i++;
+    }
+
+    return result;
   }
 
 
