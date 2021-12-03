@@ -79,6 +79,19 @@ class ArrayAlgorithmsTest {
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"dog", "racecar", "car"}));
     assertEquals("fl",
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"flower", "flow", "flight"}));
+    assertEquals("", arrayAlgorithms.findLongestCommonPrefix(new String[] {""}));
+    assertEquals("dog",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"dog", "dog", "dog"}));
+    assertEquals("",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"", "dog", "dog"}));
+
+    assertEquals("12",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"123", "12", "12asd"}));
+
+    assertEquals("a",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"a"}));
+    
+    
   }
 
 

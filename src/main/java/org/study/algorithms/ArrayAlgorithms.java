@@ -161,13 +161,34 @@ public class ArrayAlgorithms {
 
   /**
    * Algorithm to find the longest common prefix string amongst an array of strings
-   * 
+   *
    * @param array input values
    * @return the long prefix for whole words
    * @see <a href="https://leetcode.com/problems/longest-common-prefix/">LeetCode</a>
    */
   public String findLongestCommonPrefix(String[] array) {
-    return "";
+    if (array == null || array.length < 1 || array[0].toCharArray().length < 1) {
+      return "";
+    }
+
+    char[] firstWord = array[0].toCharArray();
+    boolean valid = true;
+    String result = "";
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < firstWord.length && valid; i++) {
+      builder.append(firstWord[i]);
+      for (int j = 1; j < array.length; j++) {
+        String nextWord = array[j];
+        if (!nextWord.startsWith(builder.toString())) {
+          valid = false;
+          break;
+        }
+      }
+      if (valid) {
+        result = builder.toString();
+      }
+    }
+    return result;
   }
 
 }
