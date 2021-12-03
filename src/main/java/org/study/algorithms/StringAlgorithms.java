@@ -38,36 +38,53 @@ public class StringAlgorithms {
   }
 
   /**
-   * Algorithm to convert roman format to integer
+   * Algorithm to convert roman format to integer Best Auxiliary Space: O(1) for III, XX, IV, L, C,
+   * Bad Auxiliary Space: O(N) 
    *
    * @param input roman format
    * @return int number
    * @see <a href="https://leetcode.com/problems/roman-to-integer/">LeetCode</a>
    */
   public int romanToInt(String input) {
-    Map<Character, Integer> characterToIntMap = new HashMap<>();
-    characterToIntMap.put('I', 1);
-    characterToIntMap.put('V', 5);
-    characterToIntMap.put('X', 10);
-    characterToIntMap.put('L', 50);
-    characterToIntMap.put('C', 100);
-    characterToIntMap.put('D', 500);
-    characterToIntMap.put('M', 1000);
+    Map<Character, Integer> map = new HashMap<>();
+    map.put('I', 1);
+    map.put('V', 5);
+    map.put('X', 10);
+    map.put('L', 50);
+    map.put('C', 100);
+    map.put('D', 500);
+    map.put('M', 1000);
 
     char[] chars = input.toCharArray();
-    int i = 0;
-    int result = 0;
-    while (i < chars.length) {
+    int i = 0, result = 0, charsLength = chars.length;
+    while (i < charsLength) {
+      // maximum repeated symbols can be 3 for roman, in this case it skips 3 iteration. Example III - 3
+      if (i + 2 < charsLength) {
+        Integer first = map.get(chars[i]);
+        Integer second = map.get(chars[i + 1]);
+        Integer third = map.get(chars[i + 2]);
+        if (first.equals(second) && first.equals(third)) {
+          result += first * 3;
+          i += 3;
+          continue;
+        }
+      }
+      // skip 2 iteration for case II,XX,IX,IV
       if (i + 1 < chars.length) {
-        Integer current = characterToIntMap.get(chars[i]);
-        Integer next = characterToIntMap.get(chars[i + 1]);
-        if (current < next) {
-          result = result + next - current;
+        Integer first = map.get(chars[i]);
+        Integer second = map.get(chars[i + 1]);
+        if (first < second) {
+          result += second - first;
+          i += 2;
+          continue;
+        } else if (first.equals(second)) {
+          result += first * 2;
           i += 2;
           continue;
         }
       }
-      result += characterToIntMap.get(chars[i]);
+
+      result += map.get(chars[i]);
       i++;
     }
 

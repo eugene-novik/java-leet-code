@@ -37,6 +37,7 @@ class StringAlgorithmsTest {
     assertEquals(183, stringAlgorithms.romanToInt("CLXXXIII"));
     assertEquals(1994, stringAlgorithms.romanToInt("MCMXCIV"));
     assertEquals(229, stringAlgorithms.romanToInt("CCXXIX"));
+    assertEquals(19, stringAlgorithms.romanToInt("LIX"));
   }
 
 }
