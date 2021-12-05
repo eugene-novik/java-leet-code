@@ -1,7 +1,9 @@
 package org.study.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +40,22 @@ class StringAlgorithmsTest {
     assertEquals(1994, stringAlgorithms.romanToInt("MCMXCIV"));
     assertEquals(229, stringAlgorithms.romanToInt("CCXXIX"));
     assertEquals(19, stringAlgorithms.romanToInt("XIX"));
+  }
+  
+  @Test
+  public void isValidParenthesesTest() {
+    assertTrue(stringAlgorithms.isValidParentheses("()"));
+    assertTrue(stringAlgorithms.isValidParentheses("(([]{}))"));
+    assertTrue(stringAlgorithms.isValidParentheses("()[]{}"));
+    assertTrue(stringAlgorithms.isValidParentheses("{[]}"));
+    assertTrue(stringAlgorithms.isValidParentheses("{}[]{}(())[[]]"));
+
+    assertFalse(stringAlgorithms.isValidParentheses("(("));
+    assertFalse(stringAlgorithms.isValidParentheses("(]"));
+    assertFalse(stringAlgorithms.isValidParentheses("([)]"));
+    assertFalse(stringAlgorithms.isValidParentheses("))"));
+    assertFalse(stringAlgorithms.isValidParentheses("{"));
+    assertFalse(stringAlgorithms.isValidParentheses("]"));
   }
 
 }

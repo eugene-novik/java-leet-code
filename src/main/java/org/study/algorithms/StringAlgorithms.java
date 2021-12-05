@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Stack;
 
 public class StringAlgorithms {
 
@@ -39,7 +40,7 @@ public class StringAlgorithms {
 
   /**
    * Algorithm to convert roman format to integer Best Auxiliary Space: O(1) for III, XX, IV, L, C,
-   * Bad Auxiliary Space: O(N) 
+   * Bad Auxiliary Space: O(N)
    *
    * @param input roman format
    * @return int number
@@ -91,5 +92,48 @@ public class StringAlgorithms {
     return result;
   }
 
+
+  /**
+   * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if
+   * the input string is valid. Auxiliary Space: O(N)
+   *
+   * @param input original string
+   * @return true if Parentheses valid
+   * @see <a href="https://leetcode.com/problems/valid-parentheses/">LeetCode</a>
+   */
+  public boolean isValidParentheses(String input) {
+    if ("".equals(input) || input == null) {
+      return false;
+    }
+
+    Map<Character, Character> parentheses = new HashMap<>();
+    parentheses.put('{', '}');
+    parentheses.put('(', ')');
+    parentheses.put('[', ']');
+
+    Stack<Character> stack = new Stack<>();
+
+    char[] chars = input.toCharArray();
+
+    for (char next : chars) {
+      if (!stack.isEmpty()) {
+        if (parentheses.containsKey(next)) {
+          stack.push(next);
+          continue;
+        }
+        Character key = stack.peek();
+        Character value = parentheses.get(key);
+        if (value != null && value.equals(next)) {
+          stack.pop();
+        } else {
+          break;
+        }
+      } else {
+        stack.push(next);
+      }
+    }
+
+    return stack.isEmpty();
+  }
 
 }
