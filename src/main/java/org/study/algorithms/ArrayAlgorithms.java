@@ -159,7 +159,8 @@ public class ArrayAlgorithms {
   }
 
   /**
-   * Algorithm to find the longest common prefix string amongst an array of strings
+   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity:
+   * O(S*N) where N length of array, S length of first word
    *
    * @param array input values
    * @return the long prefix for whole words
@@ -188,6 +189,49 @@ public class ArrayAlgorithms {
       }
     }
     return result;
+  }
+
+  /**
+   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity:
+   * O(S * log(N)) where N length of array, S length of first word
+   *
+   * @param array input values
+   * @return the long prefix for whole words
+   * @see <a href="https://leetcode.com/problems/longest-common-prefix/">LeetCode</a>
+   */
+  public String findLongestCommonPrefixBinarySearch(String[] array) {
+    if (array == null || array.length == 0) {
+      return "";
+    }
+
+    int minLengthOfWord = Integer.MAX_VALUE;
+
+    for (String word : array) {
+      minLengthOfWord = Math.min(minLengthOfWord, word.length());
+    }
+
+    int left = 1;
+    int right = minLengthOfWord;
+
+    while (left <= right) {
+      int mid = (right + left) / 2;
+      if (isTheSamePrefix(array, mid)) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+    return array[0].substring(0, (left + right) / 2);
+  }
+
+  private boolean isTheSamePrefix(String[] array, int position) {
+    String prefix = array[0].substring(0, position);
+    for (String word : array) {
+      if (!word.startsWith(prefix)) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

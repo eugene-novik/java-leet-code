@@ -90,8 +90,27 @@ class ArrayAlgorithmsTest {
 
     assertEquals("a",
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"a"}));
-    
-    
+  }
+
+  @Test
+  public void testFindLongestCommonPrefixBinarySearch() {
+    assertEquals("",
+        arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"dog", "racecar", "car"}));
+    assertEquals("fl",
+        arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"flower", "flow", "flight"}));
+    assertEquals("", arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[] {""}));
+    assertEquals("dog",
+        arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"dog", "dog", "dog"}));
+    assertEquals("",
+        arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"", "dog", "dog"}));
+
+    assertEquals("12",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"123", "12", "12asd"}));
+
+    assertEquals("a",
+        arrayAlgorithms.findLongestCommonPrefix(new String[]{"a"}));
+
+
   }
 
 
