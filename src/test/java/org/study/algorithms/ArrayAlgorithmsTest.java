@@ -2,10 +2,16 @@ package org.study.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 class ArrayAlgorithmsTest {
 
@@ -79,7 +85,7 @@ class ArrayAlgorithmsTest {
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"dog", "racecar", "car"}));
     assertEquals("fl",
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"flower", "flow", "flight"}));
-    assertEquals("", arrayAlgorithms.findLongestCommonPrefix(new String[] {""}));
+    assertEquals("", arrayAlgorithms.findLongestCommonPrefix(new String[]{""}));
     assertEquals("dog",
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"dog", "dog", "dog"}));
     assertEquals("",
@@ -97,8 +103,9 @@ class ArrayAlgorithmsTest {
     assertEquals("",
         arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"dog", "racecar", "car"}));
     assertEquals("fl",
-        arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"flower", "flow", "flight"}));
-    assertEquals("", arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[] {""}));
+        arrayAlgorithms
+            .findLongestCommonPrefixBinarySearch(new String[]{"flower", "flow", "flight"}));
+    assertEquals("", arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{""}));
     assertEquals("dog",
         arrayAlgorithms.findLongestCommonPrefixBinarySearch(new String[]{"dog", "dog", "dog"}));
     assertEquals("",
@@ -111,6 +118,26 @@ class ArrayAlgorithmsTest {
         arrayAlgorithms.findLongestCommonPrefix(new String[]{"a"}));
 
 
+  }
+
+  @Test
+  public void test1() {
+    ListNode node1 = new ListNode(1);
+    node1.next = new ListNode(2);
+    node1.next.next = new ListNode(4);
+
+    ListNode node2 = new ListNode(1);
+    node2.next = new ListNode(3);
+    node2.next.next = new ListNode(4);
+    
+    arrayAlgorithms.mergeTwoLists(node1, node2);
+    
+    
+    node1 = new ListNode(2);
+    node2 = new ListNode(1);
+    
+    arrayAlgorithms.mergeTwoLists(node1, node2);
+    
   }
 
 

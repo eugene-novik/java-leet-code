@@ -192,8 +192,8 @@ public class ArrayAlgorithms {
   }
 
   /**
-   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity:
-   * O(S * log(N)) where N length of array, S length of first word
+   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity: O(S
+   * * log(N)) where N length of array, S length of first word
    *
    * @param array input values
    * @return the long prefix for whole words
@@ -224,6 +224,7 @@ public class ArrayAlgorithms {
     return array[0].substring(0, (left + right) / 2);
   }
 
+
   private boolean isTheSamePrefix(String[] array, int position) {
     String prefix = array[0].substring(0, position);
     for (String word : array) {
@@ -232,6 +233,59 @@ public class ArrayAlgorithms {
       }
     }
     return true;
+  }
+
+  /**
+   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity: O(M +
+   * N) where N length of list1, M length of list2
+   *
+   * @param array input values
+   * @return the long prefix for whole words
+   * @see <a href="https://leetcode.com/problems/merge-two-sorted-lists/">LeetCode</a>
+   */
+  public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    if (list1 == null) {
+      return list2;
+    }
+    if (list2 == null) {
+      return list1;
+    }
+
+    ListNode p1 = list1, p2 = list2, p3 = new ListNode();
+    ListNode result = p3;
+
+    while (p1 != null || p2 != null) {
+      Integer x = null;
+      Integer y = null;
+      Integer val = null;
+
+      if (p1 != null) {
+        x = p1.val;
+      }
+
+      if (p2 != null) {
+        y = p2.val;
+      }
+
+      if (x != null && y != null && x <= y) {
+        p1 = p1.next;
+        val = x;
+      } else if (x != null && y == null) {
+        p1 = p1.next;
+        val = x;
+      } else {
+        p2 = p2.next;
+        val = y;
+      }
+
+      p3.val = val;
+      if (p1 != null || p2 != null) {
+        p3.next = new ListNode();
+        p3 = p3.next;
+      }
+    }
+
+    return result;
   }
 
 }
