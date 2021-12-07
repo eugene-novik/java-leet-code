@@ -236,10 +236,10 @@ public class ArrayAlgorithms {
   }
 
   /**
-   * Algorithm to find the longest common prefix string amongst an array of strings. Complexity: O(M +
-   * N) where N length of list1, M length of list2
+   * Algorithm to merge two list. Complexity: O(M + N) where N length of list1, M length of list2
    *
-   * @param array input values
+   * @param list1 first list
+   * @param list2 second list
    * @return the long prefix for whole words
    * @see <a href="https://leetcode.com/problems/merge-two-sorted-lists/">LeetCode</a>
    */
@@ -286,6 +286,31 @@ public class ArrayAlgorithms {
     }
 
     return result;
+  }
+
+  /**
+   * Remove Duplicates from Sorted Array. Complexity: O(N)
+   *
+   * @param nums array
+   * @return number
+   * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">LeetCode</a>
+   */
+  public int removeDuplicates(int[] nums) {
+    if (nums == null || nums.length < 1) {
+      return 0;
+    }
+    int position = 0;
+    int uniqValue = nums[0];
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] > uniqValue) {
+        int val = nums[i];
+        nums[position + 1] = val;
+        uniqValue = val;
+        position++;
+      }
+    }
+
+    return position + 1;
   }
 
 }

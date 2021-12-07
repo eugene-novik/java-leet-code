@@ -121,7 +121,7 @@ class ArrayAlgorithmsTest {
   }
 
   @Test
-  public void test1() {
+  public void testMergeTwoList() {
     ListNode node1 = new ListNode(1);
     node1.next = new ListNode(2);
     node1.next.next = new ListNode(4);
@@ -139,6 +139,11 @@ class ArrayAlgorithmsTest {
     arrayAlgorithms.mergeTwoLists(node1, node2);
     
   }
-
+  
+  @Test
+  public void testRemoveDuplicates() {
+    assertEquals(2, arrayAlgorithms.removeDuplicates(new int[] {1,1,2}));
+    assertEquals(6, arrayAlgorithms.removeDuplicates(new int[] {1,2,2,3,3,3,4,5,6}));
+  }
 
 }
