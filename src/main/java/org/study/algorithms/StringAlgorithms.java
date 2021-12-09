@@ -136,4 +136,29 @@ public class StringAlgorithms {
     return stack.isEmpty();
   }
 
+  /**
+   * Write own strStar or indexOf
+   *
+   * @param haystack original string
+   * @param needle element to find
+   * @return first position of needle
+   * @see <a href="https://leetcode.com/problems/implement-strstr/">LeetCode</a>
+   */
+  public int strStr(String haystack, String needle) {
+    if (needle == null || "".equals(needle)) {
+      return 0;
+    }
+    int start = 0;
+    int end = needle.length();
+    while (end <= haystack.length()) {
+      if (needle.equals(haystack.substring(start, end))) {
+        return start;
+      }
+      start++;
+      end++;
+    }
+
+    return -1;
+  }
+
 }

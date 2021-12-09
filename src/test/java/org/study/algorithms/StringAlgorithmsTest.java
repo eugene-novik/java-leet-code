@@ -57,5 +57,15 @@ class StringAlgorithmsTest {
     assertFalse(stringAlgorithms.isValidParentheses("{"));
     assertFalse(stringAlgorithms.isValidParentheses("]"));
   }
+  
+  @Test
+  public void strStrTest() {
+    assertEquals(2, stringAlgorithms.strStr("hello", "ll"));
+    assertEquals(-1, stringAlgorithms.strStr("aaaaa", "baa"));
+    assertEquals(0, stringAlgorithms.strStr("", ""));
+    assertEquals(3, stringAlgorithms.strStr("aaabaa", "baa"));
+    assertEquals(1, stringAlgorithms.strStr("mississippi", "issi"));
+    assertEquals(-1, stringAlgorithms.strStr("", "a"));
+  }
 
 }
