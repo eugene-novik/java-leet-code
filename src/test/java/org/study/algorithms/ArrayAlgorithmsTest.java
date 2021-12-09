@@ -150,16 +150,16 @@ class ArrayAlgorithmsTest {
 
   @Test
   public void testSearchInsert() {
-//    assertEquals(3, arrayAlgorithms.searchInsert(new int[]{1, 2, 3, 5, 6}, 5));
-//    assertEquals(7, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6, 8, 9, 10, 15}, 15));
-//    assertEquals(2, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 5));
-//
-//    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 2));
-//    assertEquals(4, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 7));
-//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 0));
-//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1}, 0));
-//    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{5}, 10));
-//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1,3}, 0));
+    assertEquals(3, arrayAlgorithms.searchInsert(new int[]{1, 2, 3, 5, 6}, 5));
+    assertEquals(7, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6, 8, 9, 10, 15}, 15));
+    assertEquals(2, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 5));
+
+    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 2));
+    assertEquals(4, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 7));
+    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 0));
+    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1}, 0));
+    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{5}, 10));
+    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1,3}, 0));
 
     int[] array = bigArray(9000000);
     assertEquals(5000000, arrayAlgorithms.searchInsert(array, 5000000));
