@@ -2,16 +2,12 @@ package org.study.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 
 class ArrayAlgorithmsTest {
 
@@ -129,27 +125,51 @@ class ArrayAlgorithmsTest {
     ListNode node2 = new ListNode(1);
     node2.next = new ListNode(3);
     node2.next.next = new ListNode(4);
-    
+
     arrayAlgorithms.mergeTwoLists(node1, node2);
-    
-    
+
     node1 = new ListNode(2);
     node2 = new ListNode(1);
-    
+
     arrayAlgorithms.mergeTwoLists(node1, node2);
-    
+
   }
-  
+
   @Test
   public void testRemoveDuplicates() {
-    assertEquals(2, arrayAlgorithms.removeDuplicates(new int[] {1,1,2}));
-    assertEquals(6, arrayAlgorithms.removeDuplicates(new int[] {1,2,2,3,3,3,4,5,6}));
+    assertEquals(2, arrayAlgorithms.removeDuplicates(new int[]{1, 1, 2}));
+    assertEquals(6, arrayAlgorithms.removeDuplicates(new int[]{1, 2, 2, 3, 3, 3, 4, 5, 6}));
   }
 
   @Test
   public void testRemoveElement() {
-    assertEquals(5, arrayAlgorithms.removeElement(new int[] {0,1,2,2,3,0,4,2}, 2));
-    assertEquals(1, arrayAlgorithms.removeElement(new int[] {2}, 3));
+    assertEquals(5, arrayAlgorithms.removeElement(new int[]{0, 1, 2, 2, 3, 0, 4, 2}, 2));
+    assertEquals(1, arrayAlgorithms.removeElement(new int[]{2}, 3));
   }
 
+
+  @Test
+  public void testSearchInsert() {
+//    assertEquals(3, arrayAlgorithms.searchInsert(new int[]{1, 2, 3, 5, 6}, 5));
+//    assertEquals(7, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6, 8, 9, 10, 15}, 15));
+//    assertEquals(2, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 5));
+//
+//    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 2));
+//    assertEquals(4, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 7));
+//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 0));
+//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1}, 0));
+//    assertEquals(1, arrayAlgorithms.searchInsert(new int[]{5}, 10));
+//    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1,3}, 0));
+
+    int[] array = bigArray(9000000);
+    assertEquals(5000000, arrayAlgorithms.searchInsert(array, 5000000));
+  }
+  
+  private int[] bigArray(int n) {
+    int[] result = new int[n];
+    for (int i = 0; i < n; i++) {
+      result[i] = i;
+    }
+    return result;
+  }
 }

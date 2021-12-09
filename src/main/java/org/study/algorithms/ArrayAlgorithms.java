@@ -314,7 +314,8 @@ public class ArrayAlgorithms {
   }
 
   /**
-   * 
+   * Complexity: O(N)
+   *
    * @param nums original array
    * @param val to remove
    * @return count
@@ -334,6 +335,49 @@ public class ArrayAlgorithms {
       }
     }
     return position == -1 ? nums.length : position;
+  }
+
+  /**
+   * Algorithm to find search insert position. Complexity: O(log(N))
+   *
+   * @param nums array of distinct integers
+   * @param target target value
+   * @return the index if the target is found. If not, return the index where it would be if it were
+   * inserted in order.
+   * @see <a href="https://leetcode.com/problems/remove-element/">LeetCode</a>
+   */
+  public int searchInsert(int[] nums, int target) {
+    if (nums == null) {
+      return -1;
+    } else if (nums.length == 1) {
+      if (target <= nums[0]) {
+        return 0;
+      }
+      return 1;
+    }
+
+    int left = 1;
+    int right = nums.length;
+
+    while (left <= right) {
+      int mid = (left + right) / 2;
+      if (nums[mid] == target) {
+        return mid;
+      } else if (nums[mid - 1] < target && target <= nums[mid]) {
+        return mid;
+      } else if (mid + 1 == nums.length && target > nums[mid]) {
+        return nums.length;
+      } else if (mid - 1 == 0 && target < nums[mid]) {
+        return 0;
+      }
+
+      if (nums[mid] < target) {
+        left = mid;
+      } else {
+        right = mid;
+      }
+    }
+    return (left + right) / 2;
   }
 
 }
