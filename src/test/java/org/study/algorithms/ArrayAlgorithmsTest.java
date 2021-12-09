@@ -160,16 +160,6 @@ class ArrayAlgorithmsTest {
     assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1}, 0));
     assertEquals(1, arrayAlgorithms.searchInsert(new int[]{5}, 10));
     assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1,3}, 0));
-
-    int[] array = bigArray(9000000);
-    assertEquals(5000000, arrayAlgorithms.searchInsert(array, 5000000));
   }
   
-  private int[] bigArray(int n) {
-    int[] result = new int[n];
-    for (int i = 0; i < n; i++) {
-      result[i] = i;
-    }
-    return result;
-  }
 }
