@@ -313,4 +313,27 @@ public class ArrayAlgorithms {
     return position + 1;
   }
 
+  /**
+   * 
+   * @param nums original array
+   * @param val to remove
+   * @return count
+   * @see <a href="https://leetcode.com/problems/remove-element/">LeetCode</a>
+   */
+  public int removeElement(int[] nums, int val) {
+    if (nums == null) {
+      return 0;
+    }
+    int position = -1;
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == val && position == -1) {
+        position = i;
+      } else if (position > -1 && position < nums.length && nums[i] != val) {
+        nums[position] = nums[i];
+        position++;
+      }
+    }
+    return position == -1 ? nums.length : position;
+  }
+
 }

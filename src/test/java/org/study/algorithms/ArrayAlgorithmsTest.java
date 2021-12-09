@@ -146,4 +146,11 @@ class ArrayAlgorithmsTest {
     assertEquals(6, arrayAlgorithms.removeDuplicates(new int[] {1,2,2,3,3,3,4,5,6}));
   }
 
+  @Test
+  public void testRemoveElement() {
+//    assertEquals(0, arrayAlgorithms.removeElement(new int[] {0,1,2,2,3,0,4,2}, 2));
+    assertEquals(0, arrayAlgorithms.removeElement(new int[] {2}, 3));
+//    assertEquals(6, arrayAlgorithms.removeElement(new int[] {1,2,2,3,3,3,4,5,6}));
+  }
+
 }
