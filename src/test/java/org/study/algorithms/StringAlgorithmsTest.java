@@ -67,5 +67,15 @@ class StringAlgorithmsTest {
     assertEquals(1, stringAlgorithms.strStr("mississippi", "issi"));
     assertEquals(-1, stringAlgorithms.strStr("", "a"));
   }
+  
+  @Test
+  public void lengthOfLastWordTest() {
+    assertEquals(5, stringAlgorithms.lengthOfLastWord("Hello World"));
+    assertEquals(4, stringAlgorithms.lengthOfLastWord("   fly me   to   the moon  "));
+    assertEquals(6, stringAlgorithms.lengthOfLastWord("luffy is still joyboy"));
+    assertEquals(2, stringAlgorithms.lengthOfLastWord("aa"));
+    assertEquals(1, stringAlgorithms.lengthOfLastWord("I"));
+    assertEquals(1, stringAlgorithms.lengthOfLastWord(" I"));
+  }
 
 }

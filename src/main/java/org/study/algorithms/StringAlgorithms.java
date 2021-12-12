@@ -161,4 +161,34 @@ public class StringAlgorithms {
     return -1;
   }
 
+  public int lengthOfLastWord(String s) {
+    if (s == null) {
+      return -1;
+    }
+    if ("".equals(s)) {
+      return 0;
+    }
+
+    char[] chars = s.toCharArray();
+
+    int start = -1, end = -1;
+    for (int i = chars.length - 1; i >= 0; i--) {
+      if (chars[i] != ' ' && end == -1) {
+        end = i;
+      }
+      if (chars[i] == ' ' && end != -1) {
+        start = i;
+      }
+      if (end > start && start > -1) {
+        break;
+      }
+    }
+
+    if (end == -1) {
+      return chars.length;
+    } else {
+      return end - start;
+    }
+  }
+
 }
