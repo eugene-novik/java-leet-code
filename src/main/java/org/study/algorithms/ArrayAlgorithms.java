@@ -399,4 +399,43 @@ public class ArrayAlgorithms {
     return maxSum;
   }
 
+  /**
+   * Increment large integer represented as an integer array digits
+   *
+   * @param digits input array with number
+   * @return new array
+   * @see <a href="https://leetcode.com/problems/remove-element/">LeetCode</a>
+   */
+  public int[] plusOne(int[] digits) {
+    if (digits == null) {
+      return null;
+    }
+    int count = 0;
+    int digitsLength = digits.length;
+    for (int i = digitsLength - 1; i >= 0; i--) {
+      if (digits[i] != 9) {
+        break;
+      }
+      count++;
+    }
+
+    if (count == 0) {
+      digits[digitsLength - 1] = digits[digitsLength - 1] + 1;
+      return digits;
+    }
+
+    int index = digitsLength - count;
+    if (index == 0) {
+      digits = new int[digitsLength + 1];
+      digits[0] = 1;
+    } else {
+      digits[index - 1] = digits[index - 1] + 1;
+      for (int i = index; i < digitsLength; i++) {
+        digits[i] = 0;
+      }
+    }
+    return digits;
+  }
+
+
 }
