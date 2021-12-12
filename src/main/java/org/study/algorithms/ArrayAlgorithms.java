@@ -380,4 +380,23 @@ public class ArrayAlgorithms {
     return (left + right) / 2;
   }
 
+  /**
+   * Find max sum of contiguous  subarray. Complexity O(N) Space Complexity O(1)
+   *
+   * @param nums original array
+   * @return max sum of subarray
+   */
+  public int maxSumOfSubArray(int[] nums) {
+    if (nums == null) {
+      return 0;
+    }
+    int maxSum = nums[0];
+    int currentSum = maxSum;
+    for (int i = 1; i < nums.length; i++) {
+      currentSum = Math.max(nums[i] + currentSum, nums[i]);
+      maxSum = Math.max(currentSum, maxSum);
+    }
+    return maxSum;
+  }
+
 }

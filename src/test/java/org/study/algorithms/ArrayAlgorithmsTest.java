@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
-
 class ArrayAlgorithmsTest {
 
   private ArrayAlgorithms arrayAlgorithms;
@@ -159,7 +157,13 @@ class ArrayAlgorithmsTest {
     assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1, 3, 5, 6}, 0));
     assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1}, 0));
     assertEquals(1, arrayAlgorithms.searchInsert(new int[]{5}, 10));
-    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1,3}, 0));
+    assertEquals(0, arrayAlgorithms.searchInsert(new int[]{1, 3}, 0));
   }
-  
+
+  @Test
+  public void testMaxSumOfSubArrayTest() {
+//    assertEquals(6, arrayAlgorithms.maxSumOfSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
+//    assertEquals(3, arrayAlgorithms.maxSumOfSubArray(new int[]{1, 1, 1}));
+    assertEquals(23, arrayAlgorithms.maxSumOfSubArray(new int[]{5, 4, -1, 7, 8}));
+  }
 }
