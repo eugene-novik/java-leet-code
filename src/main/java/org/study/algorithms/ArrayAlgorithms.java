@@ -10,7 +10,7 @@ public class ArrayAlgorithms {
    * returns the maximum sum of any contiguous sequence of n elements in the array. Time Complexity:
    * O(n^2)
    *
-   * @param array of number
+   * @param array           of number
    * @param sizeForSubArray size for sub array
    * @return the maxSize of sub array
    */
@@ -46,7 +46,7 @@ public class ArrayAlgorithms {
    * returns the maximum sum of any contiguous sequence of n elements in the array. Time Complexity:
    * O(n)
    *
-   * @param array of number
+   * @param array           of number
    * @param sizeForSubArray size for sub array
    * @return the maxSize of sub array
    */
@@ -79,7 +79,7 @@ public class ArrayAlgorithms {
    * you may not use the same element twice. You can return the answer in any order. Time
    * Complexity: O(n^n)
    *
-   * @param array numbers
+   * @param array  numbers
    * @param target number to compare sum of two elements
    * @return array with indexes
    * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
@@ -105,7 +105,7 @@ public class ArrayAlgorithms {
    * you may not use the same element twice. You can return the answer in any order. Time
    * Complexity: O(n)
    *
-   * @param array numbers
+   * @param array  numbers
    * @param target number to compare sum of two elements
    * @return array with indexes
    * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
@@ -136,7 +136,7 @@ public class ArrayAlgorithms {
    * you may not use the same element twice. You can return the answer in any order. Time
    * Complexity: O(n)
    *
-   * @param array numbers
+   * @param array  numbers
    * @param target number to compare sum of two elements
    * @return array with indexes
    * @see <a href="https://leetcode.com/problems/two-sum">LeetCode</a>
@@ -317,7 +317,7 @@ public class ArrayAlgorithms {
    * Complexity: O(N)
    *
    * @param nums original array
-   * @param val to remove
+   * @param val  to remove
    * @return count
    * @see <a href="https://leetcode.com/problems/remove-element/">LeetCode</a>
    */
@@ -340,7 +340,7 @@ public class ArrayAlgorithms {
   /**
    * Algorithm to find search insert position. Complexity: O(log(N))
    *
-   * @param nums array of distinct integers
+   * @param nums   array of distinct integers
    * @param target target value
    * @return the index if the target is found. If not, return the index where it would be if it were
    * inserted in order.
@@ -437,5 +437,34 @@ public class ArrayAlgorithms {
     return digits;
   }
 
+  /**
+   * Running Sum of 1d Array
+   *
+   * @param digits input array with number
+   * @return new array of result
+   * @see <a href="https://leetcode.com/problems/running-sum-of-1d-array">LeetCode</a>
+   */
+
+  public int[] runningSum(int[] digits) {
+
+    if (digits == null || digits.length < 1) {
+      return null;
+    }
+
+    if (digits.length == 1) {
+      return digits;
+    }
+
+    int previousSum = digits[0];
+    int[] newArray = new int[digits.length];
+    newArray[0] = digits[0];
+
+    for (int i = 1; i < digits.length; i++) {
+      previousSum += digits[i];
+      newArray[i] = previousSum;
+    }
+
+    return newArray;
+  }
 
 }
