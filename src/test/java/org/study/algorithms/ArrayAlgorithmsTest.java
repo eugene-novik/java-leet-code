@@ -187,4 +187,27 @@ class ArrayAlgorithmsTest {
     assertArrayEquals(new int[]{3, 4, 6, 16, 17},
         arrayAlgorithms.runningSum(new int[]{3, 1, 2, 10, 1}));
   }
+
+  @Test
+  void middleNodeOne() {
+    ListNode five = new ListNode(5);
+    ListNode four = new ListNode(4, five);
+    ListNode three = new ListNode(3, four);
+    ListNode two = new ListNode(2, three);
+    ListNode one = new ListNode(1, two);
+
+    arrayAlgorithms.middleNode(one);
+  }
+
+  @Test
+  void middleNodeTwo() {
+    ListNode six = new ListNode(6);
+    ListNode five = new ListNode(5, six);
+    ListNode four = new ListNode(4, five);
+    ListNode three = new ListNode(3, four);
+    ListNode two = new ListNode(2, three);
+    ListNode one = new ListNode(1, two);
+
+    arrayAlgorithms.middleNode(one);
+  }
 }

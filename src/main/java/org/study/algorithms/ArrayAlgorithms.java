@@ -467,4 +467,25 @@ public class ArrayAlgorithms {
     return newArray;
   }
 
+  /**
+   * 876. Middle of the Linked List. Given the head of a singly linked list, return the middle node
+   * of the linked list.
+   * <p>
+   * If there are two middle nodes, return the second middle node.
+   *
+   * @param head original list not
+   * @return middle of the Linked List
+   */
+  public ListNode middleNode(ListNode head) {
+    ListNode middleNode = head;
+    ListNode end = head;
+
+    while (end != null && end.next != null) {
+      middleNode = middleNode.next;
+      end = end.next.next;
+    }
+
+    return middleNode;
+  }
+
 }
