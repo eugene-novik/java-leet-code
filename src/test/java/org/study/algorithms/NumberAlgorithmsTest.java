@@ -37,4 +37,11 @@ class NumberAlgorithmsTest {
     assertFalse(numberAlgorithms.isPalindrome(-121));
 
   }
+
+  @Test
+  void numberOfSteps() {
+    assertEquals(6, numberAlgorithms.numberOfSteps(14));
+    assertEquals(4, numberAlgorithms.numberOfSteps(8));
+    assertEquals(12, numberAlgorithms.numberOfSteps(123));
+  }
 }

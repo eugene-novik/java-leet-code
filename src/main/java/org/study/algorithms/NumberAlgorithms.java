@@ -22,13 +22,39 @@ public class NumberAlgorithms {
       return false;
     }
     int revertedNumber = 0, originNumber = x;
-    
+
     while (x != 0) {
       revertedNumber = revertedNumber * 10 + x % 10;
       x = x / 10;
     }
 
     return originNumber == revertedNumber;
+  }
+
+  /**
+   * Number of Steps to Reduce a Number to Zero. Given an integer num, return the number of steps to
+   * reduce it to zero.
+   * <p>
+   * In one step, if the current number is even, you have to divide it by 2, otherwise, you have to
+   * subtract 1 from it.
+   *
+   * @param number original number
+   * @return number of space
+   */
+  public int numberOfSteps(int number) {
+    int steps = 0;
+
+    while (number > 0) {
+      if (number % 2 == 0) {
+        number /= 2;
+      } else {
+        number --;
+      }
+
+      steps++;
+    }
+
+    return steps;
   }
 
 }
