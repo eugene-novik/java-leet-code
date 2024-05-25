@@ -1,12 +1,15 @@
 package org.study.algorithms;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class StringAlgorithms {
 
@@ -140,7 +143,7 @@ public class StringAlgorithms {
    * Write own strStar or indexOf
    *
    * @param haystack original string
-   * @param needle element to find
+   * @param needle   element to find
    * @return first position of needle
    * @see <a href="https://leetcode.com/problems/implement-strstr/">LeetCode</a>
    */
@@ -189,6 +192,52 @@ public class StringAlgorithms {
     } else {
       return end - start;
     }
+  }
+
+  /**
+   * @param s        string without space
+   * @param wordDict a dictionary of strings
+   * @return all such possible sentences depends on the dictionary
+   * @see <a href="https://leetcode.com/problems/word-break-ii/description/">LeetCode</a>
+   */
+  public List<String> wordBreak(String s, List<String> wordDict) {
+    //todo: implement latter when will learn more :)
+    return null;
+  }
+
+  /**
+   * 383. Ransom Note. Given two strings ransomNote and magazine, return true if ransomNote can be
+   * constructed by using the letters from magazine and false otherwise.
+   * <p>
+   * Each letter in magazine can only be used once in ransomNote.
+   *
+   * @param ransomNote - word to build by magazine chars
+   * @param magazine   - magazine with chars
+   * @return true if it is possible, false it is not;
+   * @see <a href="https://leetcode.com/problems/ransom-note/">LeetCode</a>
+   */
+  public boolean canConstruct(String ransomNote, String magazine) {
+    Map<Character, Integer> charCounts = new HashMap<>();
+
+    for (int i = 0; i < magazine.length(); i++) {
+      char charAt = magazine.charAt(i);
+      int currentCount = charCounts.getOrDefault(charAt, 0);
+      charCounts.put(charAt, currentCount + 1);
+    }
+
+    for (int i = 0; i < ransomNote.length(); i++) {
+      char charAt = ransomNote.charAt(i);
+
+      int currentCount = charCounts.getOrDefault(charAt, 0);
+
+      if (currentCount == 0) {
+        return false;
+      }
+
+      charCounts.put(charAt, currentCount - 1);
+    }
+
+    return true;
   }
 
 }

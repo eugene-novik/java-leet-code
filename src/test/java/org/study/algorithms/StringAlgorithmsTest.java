@@ -28,7 +28,7 @@ class StringAlgorithmsTest {
             .findFirstNonRepeatedCharacter("What is the first non-repeated character?"));
 
   }
-  
+
   @Test
   public void romanToIntTest() {
     assertEquals(3, stringAlgorithms.romanToInt("III"));
@@ -41,7 +41,7 @@ class StringAlgorithmsTest {
     assertEquals(229, stringAlgorithms.romanToInt("CCXXIX"));
     assertEquals(19, stringAlgorithms.romanToInt("XIX"));
   }
-  
+
   @Test
   public void isValidParenthesesTest() {
     assertTrue(stringAlgorithms.isValidParentheses("()"));
@@ -57,7 +57,7 @@ class StringAlgorithmsTest {
     assertFalse(stringAlgorithms.isValidParentheses("{"));
     assertFalse(stringAlgorithms.isValidParentheses("]"));
   }
-  
+
   @Test
   public void strStrTest() {
     assertEquals(2, stringAlgorithms.strStr("hello", "ll"));
@@ -67,7 +67,7 @@ class StringAlgorithmsTest {
     assertEquals(1, stringAlgorithms.strStr("mississippi", "issi"));
     assertEquals(-1, stringAlgorithms.strStr("", "a"));
   }
-  
+
   @Test
   public void lengthOfLastWordTest() {
     assertEquals(5, stringAlgorithms.lengthOfLastWord("Hello World"));
@@ -78,4 +78,15 @@ class StringAlgorithmsTest {
     assertEquals(1, stringAlgorithms.lengthOfLastWord(" I"));
   }
 
+  @Test
+  void wordBreak() {
+    stringAlgorithms.wordBreak(null, null);
+  }
+
+  @Test
+  void canConstruct() {
+    assertFalse(stringAlgorithms.canConstruct("a", "b"));
+    assertFalse(stringAlgorithms.canConstruct("aa", "ab"));
+    assertTrue(stringAlgorithms.canConstruct("aa", "aab"));
+  }
 }
