@@ -201,13 +201,52 @@ class ArrayAlgorithmsTest {
 
   @Test
   void middleNodeTwo() {
-    ListNode six = new ListNode(6);
-    ListNode five = new ListNode(5, six);
+//    ListNode six = new ListNode(6);
+    ListNode five = new ListNode(5);
     ListNode four = new ListNode(4, five);
     ListNode three = new ListNode(3, four);
     ListNode two = new ListNode(2, three);
     ListNode one = new ListNode(1, two);
 
-    arrayAlgorithms.middleNode(one);
+//    arrayAlgorithms.middleNode(one);
+    arrayAlgorithms.deleteNextElementAfterMiddleAndReturnOriginal(one);
   }
+
+  @Test
+  void twoSumAndTwoSumSorted() {
+    int[] expectedPositionOfElements = {0, 1};
+    assertArrayEquals(expectedPositionOfElements,
+        arrayAlgorithms.twoSum(new int[]{1, 5, 6, 7}, 6));
+    assertArrayEquals(expectedPositionOfElements,
+        arrayAlgorithms.twoSumSorted(new int[]{1, 5, 6, 7}, 6));
+  }
+
+  @Test
+  void moveZeros() {
+    int[] expected = new int[]{1, 3, 12, 0, 0};
+    assertArrayEquals(expected, arrayAlgorithms.moveZeros(new int[]{0, 1, 0, 3, 12}));
+  }
+
+  @Test
+  void maxArea() {
+    assertEquals(49, arrayAlgorithms.maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7}));
+    assertEquals(1, arrayAlgorithms.maxArea(new int[]{1, 1}));
+    assertEquals(16, arrayAlgorithms.maxArea(new int[]{4, 3, 2, 1, 4}));
+    assertEquals(2, arrayAlgorithms.maxArea(new int[]{1, 2, 1}));
+    assertEquals(20, arrayAlgorithms.maxArea(new int[]{15, 5, 5, 5, 5}));
+    assertEquals(6, arrayAlgorithms.maxArea(new int[]{1, 2, 3, 4, 5}));
+    assertEquals(6, arrayAlgorithms.maxArea(new int[]{5, 4, 3, 2, 1}));
+  }
+
+  @Test
+  void intersectFirstAndSecond() {
+    assertArrayEquals(new int[]{4, 9},
+        arrayAlgorithms.intersect(new int[]{4, 9, 5}, new int[]{9, 4, 9, 8, 4}));
+    assertArrayEquals(new int[]{2, 2},
+        arrayAlgorithms.intersect(new int[]{1, 2, 2, 1}, new int[]{2, 2}));
+    assertArrayEquals(new int[]{2, 2},
+        arrayAlgorithms.intersect2(new int[]{1, 2, 2, 1}, new int[]{2, 2}));
+  }
+
+
 }

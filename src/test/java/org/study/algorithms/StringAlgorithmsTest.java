@@ -1,5 +1,6 @@
 package org.study.algorithms;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -89,4 +90,20 @@ class StringAlgorithmsTest {
     assertFalse(stringAlgorithms.canConstruct("aa", "ab"));
     assertTrue(stringAlgorithms.canConstruct("aa", "aab"));
   }
+
+  @Test
+  void reverseStringTest() {
+    char[] input = {'a', 'c', 'e'};
+    char[] expected = {'e', 'c', 'a'};
+
+    stringAlgorithms.reverseString(input);
+    assertArrayEquals(expected, input);
+  }
+
+  @Test
+  void isAnagram() {
+    assertTrue(stringAlgorithms.isAnagram("anagram", "nagaram"));
+    assertFalse(stringAlgorithms.isAnagram("aec", "ceb"));
+  }
+
 }

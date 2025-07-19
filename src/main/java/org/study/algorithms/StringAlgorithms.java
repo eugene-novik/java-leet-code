@@ -240,4 +240,61 @@ public class StringAlgorithms {
     return true;
   }
 
+  /**
+   * Reverse String (LeetCode #344)
+   * @param s
+   */
+  public void reverseString(char[] s) {
+    if (s == null || s.length < 2) {
+      return;
+    }
+
+    int left = 0, right = s.length - 1;
+
+    while (left < right) {
+      char swap = s[left];
+      s[left] = s[right];
+      s[right] = swap;
+      left++;
+      right--;
+    }
+
+  }
+
+  /**
+   * Valid Anagram (LeetCode #242)
+   *
+   * @param s
+   * @param t
+   * @return
+   */
+  public  boolean isAnagram(String s, String t) {
+    if (s.length() != t.length()) {
+      return false;
+    }
+
+    Map<Character, Integer> characterCountOriginal = new HashMap<>();
+
+    for (int i = 0; i < s.length(); i++) {
+      char element = s.charAt(i);
+      Integer count = characterCountOriginal.getOrDefault(element, 0);
+
+      characterCountOriginal.put(element, count + 1);
+    }
+
+    for (int i = 0; i < t.length(); i++) {
+      char element = t.charAt(i);
+      Integer numberCheck = characterCountOriginal.getOrDefault(element, 0);
+
+      if (numberCheck > 0) {
+        characterCountOriginal.put(element, numberCheck - 1);
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+
 }

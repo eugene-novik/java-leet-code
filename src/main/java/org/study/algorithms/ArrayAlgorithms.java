@@ -1,6 +1,9 @@
 package org.study.algorithms;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArrayAlgorithms {
@@ -487,5 +490,201 @@ public class ArrayAlgorithms {
 
     return middleNode;
   }
+
+  public ListNode deleteNextElementAfterMiddleAndReturnOriginal(ListNode head) {
+    ListNode previousNode = null;
+    ListNode middleNode = head;
+    ListNode end = head;
+
+    while (end != null && end.next != null) {
+      previousNode = middleNode;
+      middleNode = middleNode.next;
+      end = end.next.next;
+    }
+
+    //deleteNextElementAfterMiddle
+    previousNode.next = middleNode.next;
+
+    return head;
+  }
+
+  /**
+   * Two Sum (LeetCode #1)
+   *
+   * @param nums
+   * @param target
+   * @return
+   */
+  public int[] twoSum(int[] nums, int target) {
+
+    Map<Integer, Integer> numsMap = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+
+      if (numsMap.containsKey(complement)) {
+        return new int[]{numsMap.get(complement), i};
+      }
+
+      numsMap.put(nums[i], i);
+
+    }
+
+    return null;
+  }
+
+  public int[] twoSumSorted(int[] nums, int target) {
+    if (nums == null || nums.length < 2) {
+      return null;
+    }
+
+    int left = 0, right = nums.length - 1;
+
+    while (left < right) {
+      int sum = nums[left] + nums[right];
+
+      if (sum == target) {
+        return new int[]{left, right};
+      }
+
+      if (sum < target) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Move Zeroes (LeetCode #283)
+   *
+   * @param original
+   * @return
+   */
+  public int[] moveZeros(int[] original) {
+    if (original.length < 2) {
+      return original;
+    }
+
+    int first = 0, second = 1;
+
+    while (second < original.length) {
+      if (original[first] == 0 && original[second] != 0) {
+        swap(original, first, second);
+        first++;
+        second++;
+      } else if (original[first] != 0) {
+        first++;
+        second++;
+      } else if (original[second] == 0) {
+        second++;
+      }
+    }
+
+    return original;
+  }
+
+  private void swap(int[] array, int i, int j) {
+    int element = array[i];
+    array[i] = array[j];
+    array[j] = element;
+  }
+
+  /**
+   * Container With Most Water (LeetCode #11)
+   *
+   * @param input
+   * @return
+   */
+  public int maxArea(int[] input) {
+    if (input == null || input.length < 2) {
+      return 0;
+    }
+
+    int left = 0, right = input.length - 1;
+
+    int maxArea = 0;
+    while (left != right) {
+      int height = Math.min(input[left], input[right]);
+      int width = right - left;
+      int newArea = height * width;
+
+      if (newArea > maxArea) {
+        maxArea = newArea;
+      }
+
+      if (input[left] <= input[right]) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+
+    return maxArea;
+  }
+
+  /**
+   * Intersection of Two Arrays II (LeetCode #350)
+   */
+  public int[] intersect(int[] nums1, int[] nums2) {
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    int pointer1 = 0, pointer2 = 0;
+    int end1 = nums1.length - 1, end2 = nums2.length - 1;
+
+    List<Integer> result = new ArrayList<>();
+    while (pointer1 <= end1 && pointer2 <= end2) {
+
+      int value1 = nums1[pointer1];
+      int value2 = nums2[pointer2];
+
+      if (value1 == value2) {
+        result.add(value1);
+        pointer1++;
+        pointer2++;
+      } else if (value1 < value2) {
+        pointer1++;
+      } else {
+        pointer2++;
+      }
+
+    }
+
+    return result.stream().mapToInt(Integer::intValue).toArray();
+  }
+
+  public int[] intersect2(int[] nums1, int[] nums2) {
+    Map<Integer, Integer> numberCountMap = toNumberCountMap(nums1);
+
+    List<Integer> result = new ArrayList<>();
+
+    for (int i : nums2) {
+      Integer count = numberCountMap.getOrDefault(i, 0);
+
+      if (count > 0) {
+        result.add(i);
+        numberCountMap.put(i, count - 1);
+      }
+    }
+
+    return result.stream()
+        .mapToInt(Integer::intValue)
+        .toArray();
+  }
+
+  private Map<Integer, Integer> toNumberCountMap(int[] nums1) {
+    Map<Integer, Integer> result = new HashMap<>();
+
+    for (int i : nums1) {
+      Integer count = result.getOrDefault(i, 0);
+      result.put(i, count + 1);
+    }
+
+    return result;
+  }
+
 
 }
