@@ -2,9 +2,12 @@ package org.study.algorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ArrayAlgorithms {
 
@@ -670,9 +673,7 @@ public class ArrayAlgorithms {
       }
     }
 
-    return result.stream()
-        .mapToInt(Integer::intValue)
-        .toArray();
+    return result.stream().mapToInt(Integer::intValue).toArray();
   }
 
   private Map<Integer, Integer> toNumberCountMap(int[] nums1) {
@@ -684,6 +685,41 @@ public class ArrayAlgorithms {
     }
 
     return result;
+  }
+
+  /**
+   * Merge Intervals (LeetCode #56)
+   *
+   * @param intervals
+   * @return
+   */
+  public int[][] mergeIntervals(int[][] intervals) {
+    Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+    List<int[]> result = new ArrayList<>();
+
+    int start = intervals[0][0];
+    int end = intervals[0][1];
+
+    // [1,4] [3,6] [8,10] [12,14]
+
+    for (int i = 1; i < intervals.length; i++) {
+      int currentStart = intervals[i][0];
+      int currentEnd = intervals[i][1];
+
+      if (currentStart <= end) {
+        end = Math.max(end, currentEnd);
+      } else {
+        result.add(new int[]{start, end});
+        start = currentStart;
+        end = currentEnd;
+      }
+    }
+
+    result.add(new int[]{start, end});
+
+    return result.toArray(new int[0][]);
+
   }
 
 
