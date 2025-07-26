@@ -265,7 +265,19 @@ class ArrayAlgorithmsTest {
     for (int[] i : result2) {
       System.out.println(Arrays.toString(i));
     }
+  }
 
+  @Test
+  void findPositionByBinarySearch() {
+    int[] array = new int[]{5, 8, 12, 15, 29, 40};
+
+    assertEquals(0, arrayAlgorithms.findPositionByBinarySearch(array, 5));
+    assertEquals(1, arrayAlgorithms.findPositionByBinarySearch(array, 8));
+    assertEquals(2, arrayAlgorithms.findPositionByBinarySearch(array, 12));
+    assertEquals(3, arrayAlgorithms.findPositionByBinarySearch(array, 15));
+    assertEquals(4, arrayAlgorithms.findPositionByBinarySearch(array, 29));
+    assertEquals(5, arrayAlgorithms.findPositionByBinarySearch(array, 40));
+    assertEquals(-1, arrayAlgorithms.findPositionByBinarySearch(array, 100));
 
   }
 

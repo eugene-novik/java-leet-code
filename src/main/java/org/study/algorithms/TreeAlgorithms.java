@@ -69,26 +69,23 @@ public class TreeAlgorithms {
     fillMinValuesByLimit(node.right, list, k);
   }
 
-  public int test(TreeNode node, int k) {
-    int[] count = new int[]{0};
-    int[] result = new int[]{-1};
-
-    findMinValue(node, count, result, k);
-
-    return result[0];
+  public boolean isValidBST(TreeNode root) {
+    return validateNode(root, Long.MIN_VALUE, Long.MAX_VALUE);
   }
 
-  public void findMinValue(TreeNode node, int[] count, int[] result, int k) {
-    if (node == null || count[0] == k) {
-      return;
+  private boolean validateNode(TreeNode node, long min, long max) {
+    if (node == null) {
+      return true;
     }
 
-    findMinValue(node.left, count, result, k);
-    count[0] = count[0] + 1;
-    if (count[0] == k) {
-      result[0] = node.val;
+    if (min < node.val && node.val < max) {
+      return validateNode(node.left, min, node.val) &&
+          validateNode(node.right, node.val, max);
     }
-    findMinValue(node.right, count, result, k);
+
+    return false;
   }
+
+
 
 }

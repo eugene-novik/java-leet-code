@@ -102,7 +102,7 @@ class TreeAlgorithmsTest {
   }
 
   @Test
-  void test() {
+  void isValidBST() {
     TreeNode three = new TreeNode(3);
     TreeNode six = new TreeNode(6);
     TreeNode seven = new TreeNode(7, six, null);
@@ -111,6 +111,57 @@ class TreeAlgorithmsTest {
 
     TreeNode root = new TreeNode(10, five, fifteen);
 
-    assertEquals(6, algorithms.test(root, 3));
+    boolean validBST = algorithms.isValidBST(root);
+    assertTrue(validBST);
   }
+
+  @Test
+  void isNotValidBST_LeftChildGreaterThanParent() {
+    TreeNode four = new TreeNode(4);
+    TreeNode two = new TreeNode(2);
+    TreeNode one = new TreeNode(1, four, two);
+
+    assertFalse(algorithms.isValidBST(one));
+  }
+
+  @Test
+  void isValidBST_RightChildLessThanParent() {
+    TreeNode four = new TreeNode(4);
+    TreeNode two = new TreeNode(2);
+    TreeNode three = new TreeNode(3, two, four);
+    TreeNode one = new TreeNode(1, null, three);
+
+    assertTrue(algorithms.isValidBST(one));
+  }
+
+  @Test
+  void isValidBST_DeepLeftViolation() {
+    TreeNode six = new TreeNode(6);
+    TreeNode two = new TreeNode(2, null, six);
+
+    TreeNode one = new TreeNode(1, null, two);
+
+    assertTrue(algorithms.isValidBST(one));
+  }
+
+  @Test
+  void isNotValidBST_DeepRightViolation() {
+    TreeNode two = new TreeNode(2);
+    TreeNode six = new TreeNode(6, two, null);
+
+    TreeNode five = new TreeNode(5, null, six);
+
+    assertFalse(algorithms.isValidBST(five));
+  }
+
+  @Test
+  void isNotValidBST_DuplicateValues() {
+    TreeNode oneLeft = new TreeNode(1);
+    TreeNode oneRight = new TreeNode(1);
+    TreeNode root = new TreeNode(1, oneLeft, oneRight);
+
+    assertFalse(algorithms.isValidBST(root));
+  }
+
+
 }

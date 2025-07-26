@@ -722,5 +722,30 @@ public class ArrayAlgorithms {
 
   }
 
+  public int findPositionByBinarySearch(int[] array, int element) {
+    if (array == null) {
+      return -1;
+    }
+
+    int left = 0, right = array.length - 1;
+
+    while (left <= right) {
+      int middle = left + (right - left) / 2;
+
+      if (array[middle] == element) {
+        return middle;
+      }
+
+      if (array[middle] > element) {
+        right = middle - 1;
+      } else {
+        left = middle + 1;
+      }
+    }
+
+    return -1;
+  }
+
+
 
 }
