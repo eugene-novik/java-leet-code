@@ -281,4 +281,25 @@ class ArrayAlgorithmsTest {
 
   }
 
+  @Test
+  void insertionSortList() {
+    ListNode third = new ListNode(2);
+    ListNode second = new ListNode(4, third);
+    ListNode root = new ListNode(10, second);
+
+    arrayAlgorithms.insertionSortList(root);
+
+    int[] expectedOrder = new int[] {2, 4, 10};
+
+    int i = 0;
+    ListNode result = root;
+    while(result != null) {
+      assertEquals(expectedOrder[i], result.val);
+
+      i++;
+      result = result.next;
+    }
+
+  }
+
 }

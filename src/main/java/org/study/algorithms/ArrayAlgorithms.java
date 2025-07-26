@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class ArrayAlgorithms {
 
@@ -575,7 +573,7 @@ public class ArrayAlgorithms {
 
     while (second < original.length) {
       if (original[first] == 0 && original[second] != 0) {
-        swap(original, first, second);
+        swapValue(original, first, second);
         first++;
         second++;
       } else if (original[first] != 0) {
@@ -589,7 +587,7 @@ public class ArrayAlgorithms {
     return original;
   }
 
-  private void swap(int[] array, int i, int j) {
+  private void swapValue(int[] array, int i, int j) {
     int element = array[i];
     array[i] = array[j];
     array[j] = element;
@@ -744,6 +742,37 @@ public class ArrayAlgorithms {
     }
 
     return -1;
+  }
+
+  /**
+   * 147. Insertion Sort List
+   * @param head - single linked list
+   * @return - sorted single linked list
+   */
+  public ListNode insertionSortList(ListNode head) {
+    ListNode next = head.next;
+    ListNode root = head;
+
+    while (next != null) {
+      while (root != next) {
+        if (root.val > next.val) {
+          swapValue(root, next);
+        }
+        root = root.next;
+      }
+
+      next = next.next;
+      root = head;
+    }
+
+    return head;
+  }
+
+  private void swapValue(ListNode one, ListNode second) {
+    int value = one.val;
+
+    one.val = second.val;
+    second.val = value;
   }
 
 
