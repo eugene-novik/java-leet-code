@@ -289,17 +289,35 @@ class ArrayAlgorithmsTest {
 
     arrayAlgorithms.insertionSortList(root);
 
-    int[] expectedOrder = new int[] {2, 4, 10};
+    int[] expectedOrder = new int[]{2, 4, 10};
 
     int i = 0;
     ListNode result = root;
-    while(result != null) {
+    while (result != null) {
       assertEquals(expectedOrder[i], result.val);
 
       i++;
       result = result.next;
     }
 
+  }
+
+  @Test
+  void sortByHeap() {
+    int[] input = {10, 14, 18, 3, 2};
+    int[] expected = {2, 3, 10, 14, 18};
+
+    arrayAlgorithms.sortByPriorityQueue(input);
+
+    assertArrayEquals(expected, input);
+  }
+
+  @Test
+  void findKthLargest() {
+    int[] input = {10, 14, 18, 2, 1, 7, 0};
+    int expected = 10;
+
+    assertEquals(expected, arrayAlgorithms.findKthLargest(input, 3));
   }
 
 }

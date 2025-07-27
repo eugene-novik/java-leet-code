@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ArrayAlgorithms {
 
@@ -746,6 +751,7 @@ public class ArrayAlgorithms {
 
   /**
    * 147. Insertion Sort List
+   *
    * @param head - single linked list
    * @return - sorted single linked list
    */
@@ -776,5 +782,88 @@ public class ArrayAlgorithms {
   }
 
 
+  public void sortByPriorityQueue(int[] array) {
+    PriorityQueue<Integer> heap = new PriorityQueue<>();
+
+    for (int i : array) {
+      heap.add(i);
+    }
+
+    Integer min = heap.poll();
+    int i = 0;
+
+    while (min != null) {
+      array[i] = min;
+      min = heap.poll();
+      i++;
+    }
+  }
+
+  /**
+   * 912. Sort an Array
+   *
+   * @param array
+   */
+  public void sortByHip(int[] array) {
+    for (int index = (array.length - 2) / 2; index >= 0; index--) {
+      heapifyAtIndex(array, array.length, index);
+    }
+
+    for (int index = array.length - 1; index > 0; index--) {
+      int temp = array[index];
+      array[index] = array[0];
+      array[0] = temp;
+      heapifyAtIndex(array, index, 0);
+    }
+  }
+
+  private void heapifyAtIndex(int[] array, int heapSize, int index) {
+    int left = index * 2 + 1;
+    int right = index * 2 + 2;
+
+    int largest = index;
+
+    if (left < heapSize && array[left] > array[largest]) {
+      largest = left;
+    }
+
+    if (right < heapSize && array[right] > array[largest]) {
+      largest = right;
+    }
+
+    if (largest != index) {
+      int temp = array[index];
+      array[index] = array[largest];
+      array[largest] = temp;
+      heapifyAtIndex(array, heapSize, largest);
+    }
+  }
+
+  /**
+   * 215. Kth Largest Element in an Array
+   *
+   * @param nums - original array
+   * @param k    - number of max element
+   * @return - Kth Largest Element
+   */
+  public int findKthLargest(int[] nums, int k) {
+    if (k > nums.length) {
+      return -1;
+    }
+
+    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+
+    for (int x : nums) {
+      priorityQueue.add(x);
+      if (priorityQueue.size() > k) {
+        priorityQueue.remove();
+      }
+    }
+
+    return priorityQueue.peek();
+  }
 
 }
+
+
+
