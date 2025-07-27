@@ -320,4 +320,14 @@ class ArrayAlgorithmsTest {
     assertEquals(expected, arrayAlgorithms.findKthLargest(input, 3));
   }
 
+  @Test
+  void countingSort() {
+    int[] input = {10, 14, 18, 2, 1, 7, 0};
+    int[] expected = {0, 1, 2, 7, 10, 14, 18};
+
+    arrayAlgorithms.countingSort(input);
+
+    assertArrayEquals(expected, input);
+  }
+
 }

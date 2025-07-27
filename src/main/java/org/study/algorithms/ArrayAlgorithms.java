@@ -863,6 +863,47 @@ public class ArrayAlgorithms {
     return priorityQueue.peek();
   }
 
+  /**
+   * Sort Colors
+   * @param array
+   */
+  public void countingSort(int[] array) {
+    if (array.length < 1) {
+      return;
+    }
+
+    int min = array[0];
+    int max = array[0];
+
+    for (int i : array) {
+      if (i > max) {
+        max = i;
+      }
+      if (i < min) {
+        min = i;
+      }
+    }
+
+    int range = max - min + 1;
+    int[] count = new int[range];
+
+    for (int i : array) {
+      count[i - min]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < range; i++) {
+      int times = count[i];
+
+      while (times > 0) {
+        array[index] = i + min;
+        index++;
+        times--;
+      }
+    }
+
+  }
+
 }
 
 
