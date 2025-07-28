@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -328,6 +329,65 @@ class ArrayAlgorithmsTest {
     arrayAlgorithms.countingSort(input);
 
     assertArrayEquals(expected, input);
+  }
+
+  @Test
+  void testNullInput() {
+    assertNull(arrayAlgorithms.mergeRectanglesToSmallestRectangle(null));
+  }
+
+  @Test
+  void testSingleRectangle() {
+    Rectangle r = new Rectangle(1, 2, 3, 4);
+    Rectangle result = arrayAlgorithms.mergeRectanglesToSmallestRectangle(List.of(r));
+    assertEquals(r, result);
+  }
+
+  @Test
+  void testTwoNonOverlappingRectangles() {
+    Rectangle r1 = new Rectangle(0, 0, 10, 10);
+    Rectangle r2 = new Rectangle(20, 20, 5, 5);
+    Rectangle expected = new Rectangle(0, 0, 25, 25);
+    Rectangle result = arrayAlgorithms.mergeRectanglesToSmallestRectangle(List.of(r1, r2));
+    assertEquals(expected, result);
+  }
+
+  @Test
+  void testOverlappingRectangles() {
+    Rectangle r1 = new Rectangle(0, 0, 10, 10);
+    Rectangle r2 = new Rectangle(5, 5, 10, 10);
+    Rectangle expected = new Rectangle(0, 0, 15, 15);
+    Rectangle result = arrayAlgorithms.mergeRectanglesToSmallestRectangle(List.of(r1, r2));
+    assertEquals(expected, result);
+  }
+
+  @Test
+  void testNegativeCoordinates() {
+    Rectangle r1 = new Rectangle(-10, -10, 5, 5);
+    Rectangle r2 = new Rectangle(0, 0, 5, 5);
+    Rectangle expected = new Rectangle(-10, -10, 15, 15);
+    Rectangle result = arrayAlgorithms.mergeRectanglesToSmallestRectangle(List.of(r1, r2));
+    assertEquals(expected, result);
+  }
+
+  @Test
+  void testMultipleRectangles() {
+    Rectangle r1 = new Rectangle(4, 0, 12, 6);
+    Rectangle r2 = new Rectangle(18, 7, 12, 6);
+    Rectangle r3 = new Rectangle(0, 12, 12, 6);
+    Rectangle expected = new Rectangle(0, 0, 30, 18);
+    Rectangle result = arrayAlgorithms.mergeRectanglesToSmallestRectangle(List.of(r1, r2, r3));
+    assertEquals(expected, result);
+  }
+
+  @Test
+  void largestRectangleArea() {
+    int[] input = {4, 2, 0, 3, 2, 4, 3, 4};
+    int[] input2 = {2, 1, 5, 6, 2, 3};
+    int expected = 10;
+
+    assertEquals(expected, arrayAlgorithms.largestRectangleArea(input));
+    assertEquals(expected, arrayAlgorithms.largestRectangleArea(input2));
   }
 
 }

@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Stack;
 
 public class ArrayAlgorithms {
 
@@ -865,6 +862,7 @@ public class ArrayAlgorithms {
 
   /**
    * Sort Colors
+   *
    * @param array
    */
   public void countingSort(int[] array) {
@@ -901,8 +899,92 @@ public class ArrayAlgorithms {
         times--;
       }
     }
-
   }
+
+  /**
+   * from real interview Merge an array of rectangles in the format { x, y, width, height } into a
+   * single rectangle, i.e. return the smallest rectangle that includes all the rectangles in the
+   * array.
+   *
+   * @param rectangles - list of rectangle
+   * @return the smallest rectangle that contains all rectangles inside
+   */
+  public Rectangle mergeRectanglesToSmallestRectangle(List<Rectangle> rectangles) {
+    if (rectangles == null || rectangles.isEmpty()) {
+      return null;
+    }
+
+    int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE;
+    int maxWidth = Integer.MIN_VALUE, maxHeight = Integer.MIN_VALUE;
+
+    for (Rectangle rectangle : rectangles) {
+      if (minX > rectangle.getX()) {
+        minX = rectangle.getX();
+      }
+      if (minY > rectangle.getY()) {
+        minY = rectangle.getY();
+      }
+
+      int nextMaxWidth = rectangle.getX() + rectangle.getWidth();
+      int nextMaxHeight = rectangle.getY() + rectangle.getHeight();
+
+      if (maxWidth < nextMaxWidth) {
+        maxWidth = nextMaxWidth;
+      }
+      if (maxHeight < nextMaxHeight) {
+        maxHeight = nextMaxHeight;
+      }
+    }
+
+    return new Rectangle(minX, minY, maxWidth - minX, maxHeight - minY);
+  }
+
+  /**
+   * 84 Largest Rectangle in Histogram
+   * Given an array of integers heights representing the histogram's bar height
+   * where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+   *
+   * @param heights array of numbers
+   * @return the largest rectangle area
+   */
+  public int largestRectangleArea(int[] heights) {
+    if (heights.length == 1) {
+      return heights[0];
+    }
+
+    Stack<Integer> stack = new Stack<>();
+    int maxArea = 0;
+
+    for (int i = 0; i < heights.length; i++) {
+      int currentHeight = heights[i];
+
+      while (!stack.isEmpty() && heights[stack.peek()] > currentHeight) {
+        int topIndex = stack.pop();
+        int height = heights[topIndex];
+
+        int leftIndex = stack.isEmpty() ? -1 : stack.peek();
+        int width = i - leftIndex - 1;
+
+        int area = height * width;
+        maxArea = Math.max(maxArea, area);
+      }
+
+      stack.push(i);
+    }
+
+    while (!stack.isEmpty()) {
+      int topIndex = stack.pop();
+      int height = heights[topIndex];
+      int leftIndex = stack.isEmpty() ? -1 : stack.peek();
+      int width = heights.length - leftIndex - 1;
+      int area = height * width;
+      maxArea = Math.max(maxArea, area);
+    }
+
+    return maxArea;
+  }
+
+
 
 }
 
