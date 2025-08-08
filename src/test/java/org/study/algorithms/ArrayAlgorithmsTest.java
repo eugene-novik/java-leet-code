@@ -390,4 +390,15 @@ class ArrayAlgorithmsTest {
     assertEquals(expected, arrayAlgorithms.largestRectangleArea(input2));
   }
 
+  @Test
+  void swapPairs() {
+    ListNode four = new ListNode(4);
+    ListNode three = new ListNode(3, four);
+    ListNode two = new ListNode(2, three);
+    ListNode one = new ListNode(1, two);
+
+    ListNode result = arrayAlgorithms.swapPairs(one);
+    System.out.println(result);
+  }
+
 }
