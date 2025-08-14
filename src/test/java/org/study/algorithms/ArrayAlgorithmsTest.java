@@ -401,4 +401,15 @@ class ArrayAlgorithmsTest {
     System.out.println(result);
   }
 
+  @Test
+  void topKFrequent() {
+    int[] nums = {1, 1, 1, 2, 2, 3};
+    int k = 2;
+
+    int[] result = arrayAlgorithms.topKFrequent(nums, k);
+    Arrays.sort(result); // порядок не гарантирован
+
+    assertArrayEquals(new int[]{1, 2}, result);
+  }
+
 }

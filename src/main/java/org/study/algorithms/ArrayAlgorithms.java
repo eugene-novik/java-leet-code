@@ -940,9 +940,9 @@ public class ArrayAlgorithms {
   }
 
   /**
-   * 84 Largest Rectangle in Histogram
-   * Given an array of integers heights representing the histogram's bar height
-   * where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+   * 84 Largest Rectangle in Histogram Given an array of integers heights representing the
+   * histogram's bar height where the width of each bar is 1, return the area of the largest
+   * rectangle in the histogram.
    *
    * @param heights array of numbers
    * @return the largest rectangle area
@@ -986,6 +986,7 @@ public class ArrayAlgorithms {
 
   /**
    * 24. Swap Nodes in Pairs
+   *
    * @param head - listNode root
    * @return node after swaping
    */
@@ -1009,8 +1010,35 @@ public class ArrayAlgorithms {
     return dummy.next;
   }
 
+  /**
+   * 347. Top K Frequent Elements
+   *
+   * @param nums - number
+   * @param k    - number of most frequent elements to be return
+   * @return
+   */
+  public int[] topKFrequent(int[] nums, int k) {
 
+    Map<Integer, Integer> frequentElementsMap = new HashMap<>();
 
+    for (int num : nums) {
+      Integer count = frequentElementsMap.getOrDefault(num, 0);
+      frequentElementsMap.put(num, count + 1);
+    }
+
+    PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
+        (a, b) -> b.getValue() - a.getValue());
+
+    maxHeap.addAll(frequentElementsMap.entrySet());
+
+    int[] result = new int[k];
+
+    for (int i = 0; i < k; i++) {
+      result[i] = maxHeap.poll().getKey();
+    }
+
+    return result;
+  }
 
 
 }
