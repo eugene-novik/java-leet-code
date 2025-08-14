@@ -2,6 +2,7 @@ package org.study.algorithms;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Stack;
-import java.util.TreeMap;
 
 public class StringAlgorithms {
 
@@ -33,10 +33,8 @@ public class StringAlgorithms {
       }
     }
 
-    Optional<Character> first = map.entrySet().stream()
-        .filter(e -> e.getValue() == 1)
-        .map(Entry::getKey)
-        .findFirst();
+    Optional<Character> first = map.entrySet().stream().filter(e -> e.getValue() == 1)
+        .map(Entry::getKey).findFirst();
 
     return first.orElse(null);
   }
@@ -242,6 +240,7 @@ public class StringAlgorithms {
 
   /**
    * Reverse String (LeetCode #344)
+   *
    * @param s
    */
   public void reverseString(char[] s) {
@@ -268,7 +267,7 @@ public class StringAlgorithms {
    * @param t
    * @return
    */
-  public  boolean isAnagram(String s, String t) {
+  public boolean isAnagram(String s, String t) {
     if (s.length() != t.length()) {
       return false;
     }
@@ -276,24 +275,41 @@ public class StringAlgorithms {
     Map<Character, Integer> characterCountOriginal = new HashMap<>();
 
     for (int i = 0; i < s.length(); i++) {
-      char element = s.charAt(i);
-      Integer count = characterCountOriginal.getOrDefault(element, 0);
+      char fromFirstString = s.charAt(i);
+      Integer toAdd = characterCountOriginal.getOrDefault(fromFirstString, 0);
+      characterCountOriginal.put(fromFirstString, toAdd + 1);
 
-      characterCountOriginal.put(element, count + 1);
+      char fromSecondString = t.charAt(i);
+      Integer toMinus = characterCountOriginal.getOrDefault(fromSecondString, 0);
+      characterCountOriginal.put(fromSecondString, toMinus - 1);
     }
 
-    for (int i = 0; i < t.length(); i++) {
-      char element = t.charAt(i);
-      Integer numberCheck = characterCountOriginal.getOrDefault(element, 0);
+    return characterCountOriginal.values().stream().allMatch(element -> element.equals(0));
+  }
 
-      if (numberCheck > 0) {
-        characterCountOriginal.put(element, numberCheck - 1);
-      } else {
-        return false;
-      }
+  /**
+   * 49. Group Anagrams
+   *
+   * @param strs - original
+   * @return
+   */
+  public List<List<String>> groupAnagrams(String[] strs) {
+    if (strs.length < 2) {
+      return List.of(List.of(strs[0]));
     }
 
-    return true;
+    Map<String, List<String>> result = new HashMap<>();
+
+    for (String str : strs) {
+      char[] charArray = str.toCharArray();
+      Arrays.sort(charArray);
+
+      String key = new String(charArray);
+
+      result.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
+    }
+
+    return result.values().stream().toList();
   }
 
 

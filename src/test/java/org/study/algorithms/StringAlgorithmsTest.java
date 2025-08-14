@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -104,6 +107,35 @@ class StringAlgorithmsTest {
   void isAnagram() {
     assertTrue(stringAlgorithms.isAnagram("anagram", "nagaram"));
     assertFalse(stringAlgorithms.isAnagram("aec", "ceb"));
+  }
+
+  @Test
+  void groupAnagram() {
+    String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+    List<List<String>> expected = List.of(
+        List.of("eat", "tea", "ate"),
+        List.of("tan", "nat"),
+        List.of("bat")
+    );
+
+    List<List<String>> actual = stringAlgorithms.groupAnagrams(input);
+
+    assertTrue(equalGroupLists(expected, actual));
+  }
+
+  private boolean equalGroupLists(List<List<String>> expected, List<List<String>> actual) {
+    Set<Set<String>> expectedSet = new HashSet<>();
+    for (List<String> group : expected) {
+      expectedSet.add(new HashSet<>(group));
+    }
+
+    Set<Set<String>> actualSet = new HashSet<>();
+    for (List<String> group : actual) {
+      actualSet.add(new HashSet<>(group));
+    }
+
+    return expectedSet.equals(actualSet);
   }
 
 }
