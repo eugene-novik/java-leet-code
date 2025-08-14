@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -1026,15 +1027,20 @@ public class ArrayAlgorithms {
       frequentElementsMap.put(num, count + 1);
     }
 
-    PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
-        (a, b) -> b.getValue() - a.getValue());
+    PriorityQueue<Map.Entry<Integer, Integer>> heap =
+        new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
 
-    maxHeap.addAll(frequentElementsMap.entrySet());
+    for (Entry<Integer, Integer> entry : frequentElementsMap.entrySet()) {
+      heap.add(entry);
+      if (heap.size() > k) {
+        heap.poll();
+      }
+    }
 
     int[] result = new int[k];
 
     for (int i = 0; i < k; i++) {
-      result[i] = maxHeap.poll().getKey();
+      result[i] = heap.poll().getKey();
     }
 
     return result;

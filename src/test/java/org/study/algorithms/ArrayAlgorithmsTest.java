@@ -407,7 +407,7 @@ class ArrayAlgorithmsTest {
     int k = 2;
 
     int[] result = arrayAlgorithms.topKFrequent(nums, k);
-    Arrays.sort(result); // порядок не гарантирован
+    Arrays.sort(result);
 
     assertArrayEquals(new int[]{1, 2}, result);
   }
