@@ -412,4 +412,16 @@ class ArrayAlgorithmsTest {
     assertArrayEquals(new int[]{1, 2}, result);
   }
 
+  @Test
+  void productExceptSelf() {
+    int[] input = {2, 3, 4, 5};
+    int[] expected = {60, 40, 30, 24};
+
+    int[] result = arrayAlgorithms.productExceptSelf(input);
+    assertArrayEquals(expected, result);
+
+    result = arrayAlgorithms.productExceptSelfOptimized(input);
+    assertArrayEquals(expected, result);
+  }
+
 }

@@ -1046,6 +1046,64 @@ public class ArrayAlgorithms {
     return result;
   }
 
+  /**
+   * 238. Product of Array Except Self
+   * @param input - original number
+   * @return - result
+   */
+  public int[] productExceptSelf(int[] input) {
+    int[] prefixProduct = new int[input.length];
+    int[] suffixProduct = new int[input.length];
+
+    prefixProduct[0] = input[0];
+    for (int i = 1; i < prefixProduct.length; i++) {
+      prefixProduct[i] = prefixProduct[i -1] * input[i];
+    }
+
+    suffixProduct[input.length - 1] = input[input.length - 1];
+    for (int i = input.length - 2; i >= 0; i--) {
+      suffixProduct[i] = suffixProduct[i + 1] * input[i];
+    }
+
+    int[] result = new int[input.length];
+
+    for (int i = 0; i < result.length; i++) {
+      if (i == 0) {
+        result[i] = suffixProduct[i + 1];
+      } else if (i == result.length - 1) {
+        result[i] = prefixProduct[result.length - 2];
+      } else {
+        result[i] = prefixProduct[i - 1] * suffixProduct[i + 1];
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * 238. Product of Array Except Self
+   * @param input - original number
+   * @return - result
+   */
+  public int[] productExceptSelfOptimized(int[] input) {
+    int n = input.length;
+    int[] result = new int[n];
+
+    result[0] = 1;
+    for (int i = 1; i < n; i++) {
+      result[i] = result[i - 1] * input[i - 1];
+    }
+
+    int rightProduct = 1;
+    for (int i = n - 1; i >= 0; i--) {
+      result[i] = result[i] * rightProduct;
+      rightProduct *= input[i];
+    }
+
+    return result;
+  }
+
+
 
 }
 
